@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "login": "12345",
+      "password": "12345"
+    },
+    {
+      "login": "qwerty",
+      "password": "qwerty"
+    },
+    {
+      "login": "hello",
+      "password": "friend"
+    },
+    {
+      "login": "fsociety",
+      "password": "fsociety"
+    }
+  ]
+}
