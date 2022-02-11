@@ -10,6 +10,7 @@ export default new Vuex.Store({
     searchLength: 0,
     items: [],
     favourites: [],
+    API_KEY: 'AIzaSyC0tNbn_l7J2x6AWi7NUmak_etAiQSy0sQ',
   },
   getters: {
     videos(state) {
@@ -62,6 +63,10 @@ export default new Vuex.Store({
       state.favourites = state.favourites.filter((favorite) => favorite.id !== item.id);
       localStorage.setItem(`${getUser.login}-favourites`, JSON.stringify(state.favourites));
     },
+    editFavourite(state, item) {
+      // находим в нашем стейт favourites ITEM id которого равен id пришедшего айтем, и меняем ему внутренности
+      //  ставим в стораж наши изменения!
+    },
 
     logout(state) {
       state.searchLength = 0;
@@ -71,7 +76,7 @@ export default new Vuex.Store({
   },
   actions: {
     setItemsAction(context, searchQuery) {
-      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&order=title&q=${searchQuery}&key=AIzaSyCLmsDUDBK9oovXZg3rTeHcYGLIqqhMf7Q`)
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&order=title&q=${searchQuery}&key=${this.state.API_KEY}`)
         .then((data) => {
           context.commit('setItems', {
             data,
@@ -80,7 +85,7 @@ export default new Vuex.Store({
         });
     },
     searchFromFavourite(context, query) {
-      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${query.range}&order=${query.sort}&q=${query.value}&key=AIzaSyCLmsDUDBK9oovXZg3rTeHcYGLIqqhMf7Q`)
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${query.range}&order=${query.sort}&q=${query.value}&key=${this.state.API_KEY}`)
         .then((data) => {
           context.commit('setItems', {
             data,

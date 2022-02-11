@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="modal__form">
+    <div class="modal__form modal-add" v-if="type === 'ADD'">
       <el-form :label-position="labelPosition"
                :model="form"
                :rules="rules"
@@ -8,7 +8,7 @@
       >
         <h3>Сохранить запрос</h3>
         <el-form-item label="Запрос">
-          <el-input :disabled="type === 'ADD'" v-model="query"></el-input>
+          <el-input disabled v-model="query"></el-input>
         </el-form-item>
         <el-form-item label="Название" prop="name">
           <el-input v-model="form.name"></el-input>
@@ -18,26 +18,59 @@
             <el-option label="По дате" value="date"></el-option>
             <el-option label="По рейтингу" value="rating"></el-option>
             <el-option label="По числу просмотров" value="viewCount"></el-option>
+            <el-option label="По названию" value="title"></el-option>
           </el-select>
         </el-form-item>
         <div class="form-range">
           <span class="demonstration">Максимальное колличество</span>
           <div class="slider">
-            <el-slider v-model="form.range"></el-slider>
+            <el-slider v-model="form.range" max="50"></el-slider>
             <span class="range-counter">{{ form.range }}</span>
           </div>
         </div>
-        <div class="form-buttons" v-if="type === 'ADD'">
+        <div class="form-buttons">
           <el-button plain @click="$emit('handlerCloseModal')">Не сохранять</el-button>
           <el-button @click="submitForm" type="primary">Сохранить</el-button>
         </div>
-        <div class="form-buttons" v-if="type === 'EDIT'">
+      </el-form>
+    </div>
+
+    <div class="modal__form modal-edit" v-else-if="type === 'EDIT'">
+      <el-form :label-position="labelPosition"
+               :model="form"
+               :rules="rules"
+               ref="rules"
+      >
+        <h3>Сохранить запрос</h3>
+        <el-form-item label="Запрос">
+          <el-input v-model="itemToedit.value"></el-input>
+        </el-form-item>
+        <el-form-item label="Название" prop="name">
+          <el-input v-model="itemToedit.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Сортировать по">
+          <el-select v-model="itemToedit.sort" placeholder="Сортировать по">
+            <el-option label="По дате" value="date"></el-option>
+            <el-option label="По рейтингу" value="rating"></el-option>
+            <el-option label="По числу просмотров" value="viewCount"></el-option>
+            <el-option label="По названию" value="title"></el-option>
+          </el-select>
+        </el-form-item>
+        <div class="form-range">
+          <span class="demonstration">Максимальное колличество</span>
+          <div class="slider">
+            <el-slider v-model="itemToedit.range" max="50"></el-slider>
+            <span class="range-counter">{{ itemToedit.range }}</span>
+          </div>
+        </div>
+        <div class="form-buttons">
           <el-button plain @click="$emit('handlerCloseModal')">Не изменять</el-button>
-          <el-button @click="submitForm" type="primary">Изменить</el-button>
+          <el-button @click="submitEditForm" type="primary">Изменить</el-button>
         </div>
       </el-form>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -51,6 +84,11 @@ export default {
     type: {
       type: String,
       default: '',
+    },
+    itemToedit: {
+      type: Object,
+      default: () => {
+      },
     },
   },
   data() {
@@ -89,6 +127,9 @@ export default {
         }
       });
     },
+    submitEditForm() {
+      //  комитим в стор чтобы изменить состояние
+    }
   },
 };
 </script>

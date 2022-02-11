@@ -21,9 +21,9 @@
     </div>
     <favourites-modal
       v-if="modalView"
-      :query="searchQuery"
       @handlerCloseModal="handlerCloseModal"
       :type="typeModal"
+      :itemToedit="itemToedit"
     />
   </section>
 </template>
@@ -47,6 +47,7 @@ export default {
       controlsView: false,
       modalView: false,
       typeModal: 'EDIT',
+      itemToedit: {},
     };
   },
 
@@ -69,7 +70,7 @@ export default {
     },
     handleOpenModal(item) {
       this.modalView = true;
-      console.log(item);
+      this.itemToedit = item;
     },
     handlerCloseModal() {
       this.modalView = false;

@@ -1,5 +1,5 @@
 <template>
-  <section id="search" :class="[searched ? 'searched-block' : 'search-block']">
+  <section id="search" :class="[isActiveSearched ? 'searched-block' : 'search-block']">
     <Header/>
     <div id="main" class="main-search"
          :class="{'main-searched': isActiveSearched}">
@@ -88,8 +88,7 @@ export default {
   align-items: flex-start;
   margin-top: 0;
   width: 100%;
-  min-height: 100vh;
-
+  min-height: 100%;
 }
 
 .search {

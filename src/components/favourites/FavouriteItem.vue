@@ -34,7 +34,6 @@ export default {
       controlsView: false,
     };
   },
-  methods: {},
 };
 </script>
 
@@ -55,5 +54,12 @@ button {
 
 .danger {
   color: red;
+}
+
+a {
+  text-decoration: none !important;
+  font-size: 14px;
+  color: #67c23a !important;
+  margin-right: 5px;
 }
 </style>
