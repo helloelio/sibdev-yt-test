@@ -65,7 +65,7 @@ export default new Vuex.Store({
     },
     editFavourite(state, item) {
       // находим в нашем стейт favourites ITEM id которого равен id пришедшего айтем, и меняем ему внутренности
-      //  ставим в стораж наши изменения!
+      //  ставим в localStorage наши изменения!
     },
 
     logout(state) {
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         });
     },
     searchFromFavourite(context, query) {
-      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${query.range}&order=${query.sort}&q=${query.value}&key=${this.state.API_KEY}`)
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${query.range}&order=${query.sort || 'relevance'}&q=${query.value}&key=${this.state.API_KEY}`)
         .then((data) => {
           context.commit('setItems', {
             data,

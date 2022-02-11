@@ -115,6 +115,13 @@ export default {
       },
     };
   },
+
+  beforeCreate() {
+    if (this.props.type === 'EDIT') {
+      this.form = this.props.itemToedit;
+    }
+  },
+
   methods: {
     /* eslint-disable */
     submitForm() {
@@ -127,9 +134,11 @@ export default {
         }
       });
     },
+
     submitEditForm() {
-      //  комитим в стор чтобы изменить состояние
-    }
+      this.$store.commit('editFavourite', this.form);
+      this.$emit('handlerCloseModal');
+    },
   },
 };
 </script>
