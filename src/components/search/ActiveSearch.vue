@@ -43,7 +43,7 @@
         :query="searchQuery"
         @handlerCloseModal="handlerCloseModal"
         @showTooltip="showTooltip"
-        :type="typeModal"
+        :typeModal="typeModal"
       />
     </transition>
   </div>

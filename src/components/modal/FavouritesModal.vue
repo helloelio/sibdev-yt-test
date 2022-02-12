@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="modal__form modal-add" v-if="type === 'ADD'">
+    <div class="modal__form modal-add" v-if="typeModal === 'ADD'">
       <el-form :label-position="labelPosition"
                :model="form"
                :rules="rules"
@@ -24,7 +24,7 @@
         <div class="form-range">
           <span class="demonstration">Максимальное колличество</span>
           <div class="slider">
-            <el-slider v-model="form.range" max="50"></el-slider>
+            <el-slider v-model.number="form.range" :max='50'></el-slider>
             <span class="range-counter">{{ form.range }}</span>
           </div>
         </div>
@@ -35,7 +35,7 @@
       </el-form>
     </div>
 
-    <div class="modal__form modal-edit" v-else-if="type === 'EDIT'">
+    <div class="modal__form modal-edit" v-else-if="typeModal === 'EDIT'">
       <el-form :label-position="labelPosition"
                :model="form"
                :rules="rules"
@@ -59,7 +59,7 @@
         <div class="form-range">
           <span class="demonstration">Максимальное колличество</span>
           <div class="slider">
-            <el-slider v-model="itemToedit.range" max="50"></el-slider>
+            <el-slider v-model="itemToedit.range" :max="50"></el-slider>
             <span class="range-counter">{{ itemToedit.range }}</span>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default {
       type: String,
       default: '',
     },
-    type: {
+    typeModal: {
       type: String,
       default: '',
     },
@@ -116,9 +116,9 @@ export default {
     };
   },
 
-  beforeCreate() {
-    if (this.props.type === 'EDIT') {
-      this.form = this.props.itemToedit;
+  created() {
+    if (this.typeModal === 'EDIT') {
+      this.form = this.itemToedit;
     }
   },
 

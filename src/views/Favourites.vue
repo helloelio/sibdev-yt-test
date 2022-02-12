@@ -22,7 +22,7 @@
     <favourites-modal
       v-if="modalView"
       @handlerCloseModal="handlerCloseModal"
-      :type="typeModal"
+      :typeModal="typeModal"
       :itemToedit="itemToedit"
     />
   </section>
