@@ -1,5 +1,5 @@
 <template>
-  <section id="favourites">
+  <section v-if="isLogin" id="favourites">
     <Header/>
     <div id="main" class="main-favourites">
       <div class="container">
@@ -26,6 +26,9 @@
       :itemToedit="itemToedit"
     />
   </section>
+  <!--  <div v-else class="notFound">-->
+  <!--    <router-link to="/">You need to login</router-link>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -43,6 +46,7 @@ export default {
   },
   data() {
     return {
+      isLogin: localStorage.getItem('token') !== null,
       items: [],
       controlsView: false,
       modalView: false,
@@ -53,6 +57,11 @@ export default {
 
   beforeCreate() {
     this.$store.commit('getFavFromStorage');
+  },
+
+  created() {
+    /* eslint-disable */
+    this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },
 
   computed: {

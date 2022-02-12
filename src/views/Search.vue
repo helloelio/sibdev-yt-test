@@ -1,5 +1,6 @@
 <template>
-  <section id="search" :class="[isActiveSearched ? 'searched-block' : 'search-block']">
+  <section v-if="isLogin" id="search"
+           :class="[isActiveSearched ? 'searched-block' : 'search-block']">
     <Header/>
     <div id="main" class="main-search"
          :class="{'main-searched': isActiveSearched}">
@@ -11,6 +12,9 @@
       </div>
     </div>
   </section>
+  <!--  <div v-else class="notFound">-->
+  <!--    <router-link to="/">You need to login!</router-link>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -41,6 +45,11 @@ export default {
       return this.searched || this.videos.length !== 0;
     },
     ...mapGetters(['videos']),
+  },
+
+  created() {
+    /* eslint-disable */
+    this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },
 
   methods: {

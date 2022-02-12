@@ -76,4 +76,12 @@ body {
   background-color: #fff;
 }
 
+.notFound {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10vh;
+}
+
 </style>
