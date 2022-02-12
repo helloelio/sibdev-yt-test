@@ -96,4 +96,8 @@ export default {
   border-radius: 4px;
   padding: 10px 0;
 }
+
+button {
+  border-radius: 4px;
+}
 </style>
