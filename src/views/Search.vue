@@ -1,5 +1,5 @@
 <template>
-  <section v-if="isLogin" id="search"
+  <section id="search"
            :class="[isActiveSearched ? 'searched-block' : 'search-block']">
     <Header/>
     <div id="main" class="main-search"
@@ -12,9 +12,6 @@
       </div>
     </div>
   </section>
-  <!--  <div v-else class="notFound">-->
-  <!--    <router-link to="/">You need to login!</router-link>-->
-  <!--  </div>-->
 </template>
 
 <script>

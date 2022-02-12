@@ -1,5 +1,5 @@
 <template>
-  <section v-if="isLogin" id="favourites">
+  <section id="favourites">
     <Header/>
     <div id="main" class="main-favourites">
       <div class="container">
@@ -26,9 +26,6 @@
       :itemToedit="itemToedit"
     />
   </section>
-  <!--  <div v-else class="notFound">-->
-  <!--    <router-link to="/">You need to login</router-link>-->
-  <!--  </div>-->
 </template>
 
 <script>
