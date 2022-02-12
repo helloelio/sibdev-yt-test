@@ -16,6 +16,12 @@ export default {
   components: {
     LoginForm,
   },
+  beforeCreate() {
+    if (localStorage.getItem('token') !== null) {
+      this.$router.push({ name: 'Search' });
+    }
+  },
+
 };
 </script>
 
