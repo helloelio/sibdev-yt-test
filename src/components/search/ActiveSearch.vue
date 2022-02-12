@@ -42,6 +42,7 @@
         v-if="modalView"
         :query="searchQuery"
         @handlerCloseModal="handlerCloseModal"
+        @showTooltip="showTooltip"
         :type="typeModal"
       />
     </transition>
@@ -90,10 +91,12 @@ export default {
     },
     handlerCloseModal() {
       this.modalView = false;
-      this.tooltipShow = true;
       setTimeout(() => {
         this.tooltipShow = false;
       }, 3000);
+    },
+    showTooltip() {
+      this.tooltipShow = true;
     },
   },
 };

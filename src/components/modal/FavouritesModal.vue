@@ -129,6 +129,7 @@ export default {
         if (valid) {
           this.$store.commit('addFavourite', this.form);
           this.$emit('handlerCloseModal');
+          this.$emit('showTooltip');
         } else {
           return false;
         }
