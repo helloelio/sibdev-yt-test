@@ -33,9 +33,9 @@ export default {
   },
   methods: {
     handlerLogout() {
-      this.$store.commit('logout');
       localStorage.removeItem('token');
       localStorage.removeItem('login');
+      this.$store.commit('logout');
     },
   },
 };

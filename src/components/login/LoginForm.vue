@@ -1,17 +1,19 @@
 <template>
   <form id="form">
-    <el-form class="demo-form-inline">
-      <el-form-item label="Логин">
+    <el-form class="demo-form-inline"
+             :model="user"
+             :rules="rules"
+             ref="rules"
+    >
+      <el-form-item label="Логин" prop="login">
         <el-input
-          placeholder=""
           v-model="user.login"></el-input>
       </el-form-item>
-      <el-form-item label="Пароль">
+      <el-form-item label="Пароль" prop="password">
         <el-input
-          placeholder=""
           v-model="user.password" show-password></el-input>
       </el-form-item>
-      <p v-show="wrongLogin"> Неправильно введен логин или пароль </p>
+      <p v-show="wrongLogin" class="error-message"> Неправильно введен логин или пароль </p>
       <el-button type="primary" @click="handlerLogin">Войти</el-button>
     </el-form>
   </form>
@@ -29,6 +31,18 @@ export default {
         password: '',
       },
       wrongLogin: false,
+      rules: {
+        login: [{
+          required: true,
+          message: 'Поле необходимое для заполнения!',
+          trigger: 'blur',
+        }],
+        password: [{
+          required: true,
+          message: 'Поле необходимое для заполнения!',
+          trigger: 'blur',
+        }],
+      },
     };
   },
   methods: {
@@ -75,5 +89,11 @@ export default {
 
 .el-form-item:nth-child(2) {
   margin-bottom: 40px !important;
+}
+
+.error-message {
+  border: 1px solid red;
+  border-radius: 4px;
+  padding: 10px 0;
 }
 </style>

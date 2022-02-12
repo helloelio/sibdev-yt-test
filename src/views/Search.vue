@@ -57,11 +57,6 @@ export default {
         this.searchedValue = value;
       }
     },
-    handlerLogout() {
-      this.$store.commit('logout');
-      localStorage.removeItem('token');
-      localStorage.removeItem('login');
-    },
     ...mapActions(['setItemsAction']),
   },
 };
