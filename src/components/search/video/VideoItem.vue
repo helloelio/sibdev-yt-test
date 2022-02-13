@@ -6,7 +6,11 @@
     <div class="card__text">
       <div class="card__title">{{ video.snippet.title }}</div>
       <div class="card__description">{{ video.snippet.channelTitle }}</div>
-      <div class="card__watchers"></div>
+      <div class="card__watchers">
+        {{
+          views
+        }}
+      </div>
     </div>
   </div>
 </template>
@@ -17,10 +21,31 @@ export default {
   props: {
     video: {
       type: Object,
-      default: () => {
-      },
     },
   },
+  computed: {
+    /* eslint-disable */
+    views() {
+      switch (this.video.statistics.viewCount.length) {
+        case 6 :
+          return this.video.statistics.viewCount.slice(0, 3) + ' тыс. просмотров';
+          break;
+        case 7 :
+          return this.video.statistics.viewCount.slice(0, 1) + ' млн. просмотров';
+          break;
+        case 8:
+          return this.video.statistics.viewCount.slice(0, 2) + ' млн. просмотров';
+          break;
+        case 9:
+          return this.video.statistics.viewCount.slice(0, 3) + ' млн. просмотров';
+          break;
+        default:
+          return this.video.statistics.viewCount + ' просмотров';
+
+      }
+    },
+  },
+
 };
 </script>
 
@@ -43,6 +68,11 @@ export default {
   }
 
   .card__description {
+    color: rgba(23, 23, 25, 0.3);
+    margin-bottom: 5px;
+  }
+
+  .card__watchers {
     color: rgba(23, 23, 25, 0.3);
   }
 }

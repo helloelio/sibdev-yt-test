@@ -11,6 +11,7 @@ export default new Vuex.Store({
     items: [],
     favourites: [],
     API_KEY: 'AIzaSyC0tNbn_l7J2x6AWi7NUmak_etAiQSy0sQ',
+    videoIds: '',
   },
   getters: {
     videos(state) {
@@ -33,8 +34,17 @@ export default new Vuex.Store({
 
     setItems(state, response) {
       state.searchQuery = response.searchQuery;
-      state.items = response.data.data.items;
       state.searchLength = response.data.data.pageInfo.totalResults;
+      /* eslint-disable */
+      response.data.data.items.map((item) => {
+        state.videoIds += `${item.id.videoId},`;
+      });
+      this.dispatch('getVideos');
+    },
+
+    setItemsWithViews(state, response) {
+      state.items = response.data.data.items;
+      state.videoIds = '';
     },
 
     getFavFromStorage(state) {
@@ -75,6 +85,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    getVideos(context) {
+      axios.get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&id=${this.state.videoIds.slice(0, -1)}&key=${this.state.API_KEY}`)
+        .then((data) => {
+          context.commit('setItemsWithViews', {
+            data
+          });
+        });
+    },
+
     setItemsAction(context, searchQuery) {
       axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&order=title&q=${searchQuery}&key=${this.state.API_KEY}`)
         .then((data) => {
