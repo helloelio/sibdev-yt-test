@@ -26,6 +26,9 @@ export default new Vuex.Store({
     favourites(state) {
       return state.favourites;
     },
+    getUserLogin() {
+      return JSON.parse(localStorage.getItem('login')).login;
+    },
   },
   mutations: {
     setLogin(state, login) {
@@ -48,14 +51,12 @@ export default new Vuex.Store({
     },
 
     getFavFromStorage(state) {
-      const getUser = JSON.parse(localStorage.getItem('login'));
-      if (JSON.parse(localStorage.getItem(`${getUser.login}-favourites`)) !== null) {
-        state.favourites = JSON.parse(localStorage.getItem(`${getUser.login}-favourites`));
+      if (JSON.parse(localStorage.getItem(`${this.getters.getUserLogin}-favourites`)) !== null) {
+        state.favourites = JSON.parse(localStorage.getItem(`${this.getters.getUserLogin}-favourites`));
       }
     },
 
     addFavourite(state, value) {
-      const getUser = JSON.parse(localStorage.getItem('login'));
       if (value.name !== '' && value.name !== ' ') {
         state.favourites.push({
           id: new Date(),
@@ -64,18 +65,22 @@ export default new Vuex.Store({
           range: value.range,
           sort: value.sort,
         });
-        localStorage.setItem(`${getUser.login}-favourites`, JSON.stringify(state.favourites));
+        localStorage.setItem(`${this.getters.getUserLogin}-favourites`, JSON.stringify(state.favourites));
       }
     },
     deleteFavourite(state, item) {
       /* eslint-disable */
-      const getUser = JSON.parse(localStorage.getItem('login'));
       state.favourites = state.favourites.filter((favorite) => favorite.id !== item.id);
-      localStorage.setItem(`${getUser.login}-favourites`, JSON.stringify(state.favourites));
+      localStorage.setItem(`${this.getters.getUserLogin}-favourites`, JSON.stringify(state.favourites));
     },
     editFavourite(state, item) {
-      // находим в нашем стейт favourites ITEM id которого равен id пришедшего айтем, и меняем ему внутренности
-      //  ставим в localStorage наши изменения!
+      state.favourites.map((fav) => {
+        if (fav.id === item.id) {
+          fav = item;
+        }
+      });
+      localStorage.setItem(`${this.getters.getUserLogin}-favourites`, JSON.stringify(state.favourites));
+
     },
 
     logout(state) {
