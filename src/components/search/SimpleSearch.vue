@@ -27,8 +27,6 @@ export default {
 <style scoped lang="scss">
 
 .el-button {
-  //background-color: #409eff !important;
-  //color: #fff !important;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

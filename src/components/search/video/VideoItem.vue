@@ -7,9 +7,7 @@
       <div class="card__title">{{ video.snippet.title }}</div>
       <div class="card__description">{{ video.snippet.channelTitle }}</div>
       <div class="card__watchers">
-        {{
-          views
-        }}
+        {{ views }}
       </div>
     </div>
   </div>
@@ -55,8 +53,8 @@ export default {
 
   .card__video {
     img {
-      width: 245px;
-      height: 138px;
+      max-width: 245px;
+      max-height: 138px;
     }
   }
 

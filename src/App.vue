@@ -84,4 +84,8 @@ body {
   font-size: 10vh;
 }
 
+img {
+  object-fit: cover;
+}
+
 </style>

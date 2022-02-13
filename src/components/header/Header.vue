@@ -43,8 +43,8 @@ export default {
 
 <style scoped>
 img {
-  width: 48px;
-  height: 48px;
+  max-width: 48px;
+  max-height: 48px;
 }
 
 .login {

@@ -63,13 +63,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#search {
+  margin-bottom: 50px;
+}
+
 .header {
   margin-bottom: 40px;
 }
 
 .search-block {
   min-height: 100vh;
-  height: 100vh;
 }
 
 .searched-block {
@@ -81,7 +84,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100vh;
   margin-top: -120px;
 }
 
@@ -90,15 +93,13 @@ export default {
   align-items: flex-start;
   margin-top: 0;
   width: 100%;
-  min-height: 100%;
 }
 
 .search {
-  width: 686px;
+  min-width: 686px;
 }
 
 .searched {
-  width: 1040px;
   text-align: left;
 }
 

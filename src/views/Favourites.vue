@@ -87,7 +87,7 @@ export default {
 
 <style scoped lang="scss">
 #favourites {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .favourites {
