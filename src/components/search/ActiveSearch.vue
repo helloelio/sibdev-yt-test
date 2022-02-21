@@ -5,7 +5,7 @@
       <img
         @click="handlerAddFavourite"
         class="input-btn"
-        src="../../assets/heart.svg"
+        src="@/assets/heart.svg"
         alt="heart-icon"
       />
       <el-input placeholder="Что хотите посмотреть?" v-model="searchValue">

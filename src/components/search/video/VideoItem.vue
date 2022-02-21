@@ -24,19 +24,26 @@ export default {
   computed: {
     /* eslint-disable */
     views() {
-      switch (this.video.statistics.viewCount.length) {
+      const views = this.video.statistics.viewCount;
+      const viewsTitle = views.length == 6 ? 'тыс. просмотров' :
+      views.length  > 6 && views.length <= 9 ? 'млн. просмотров' :
+      views.length >= 10 ? 'млдр. просмотров' : 'просмотров';
+
+      switch (views.length) {
         case 6 :
-          return this.video.statistics.viewCount.slice(0, 3) + ' тыс. просмотров';
+          return `${this.video.statistics.viewCount.slice(0, 3)}  ${viewsTitle}`;
           break;
         case 7 :
-          return this.video.statistics.viewCount.slice(0, 1) + ' млн. просмотров';
+          return `${this.video.statistics.viewCount.slice(0, 1)}  ${viewsTitle}`;
           break;
         case 8:
-          return this.video.statistics.viewCount.slice(0, 2) + ' млн. просмотров';
+          return `${this.video.statistics.viewCount.slice(0, 2)} ${viewsTitle}`;
           break;
         case 9:
-          return this.video.statistics.viewCount.slice(0, 3) + ' млн. просмотров';
+          return `${this.video.statistics.viewCount.slice(0, 3)} ${viewsTitle}`;
           break;
+          case 10:
+          return `${this.video.statistics.viewCount.slice(0, 1)} ${viewsTitle}`;
         default:
           return this.video.statistics.viewCount + ' просмотров';
 
