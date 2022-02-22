@@ -9,7 +9,7 @@
             <ul class="favourites__items">
               <favourite-item
                 :key="favourite.id"
-                v-for="favourite in favourites"
+                v-for="favourite in favitems"
                 :favourite="favourite"
                 :controlsView="controlsView"
                 @handleOpenModal="handleOpenModal"
@@ -52,12 +52,9 @@ export default {
     };
   },
 
-  beforeCreate() {
-    this.$store.commit('getFavFromStorage');
-  },
-
   created() {
     document.title = 'yt - избранное';
+    this.$store.commit('getFavFromStorage');
     /* eslint-disable */
     this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },
