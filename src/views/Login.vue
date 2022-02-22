@@ -17,6 +17,7 @@ export default {
     LoginForm,
   },
   beforeCreate() {
+    document.title = 'yt - вход';
     if (localStorage.getItem('token') !== null) {
       this.$router.push({ name: 'Search' });
     }

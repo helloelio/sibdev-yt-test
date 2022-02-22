@@ -49,6 +49,7 @@ export default {
   },
 
   created() {
+    document.title = 'yt - поиск видео';
     /* eslint-disable */
     this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },
