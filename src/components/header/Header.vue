@@ -12,9 +12,10 @@
           </router-link>
         </div>
         <div class="nav-rightside">
-
-          <router-link to="/">
-            <span @click="handlerLogout">Выйти</span>
+          <router-link to="/" >
+              <span class="nav-logout" @click="handlerLogout">
+                Выйти
+              </span>
           </router-link>
         </div>
       </div>
@@ -33,6 +34,7 @@ export default {
   },
   methods: {
     handlerLogout() {
+      console.log('1234');
       localStorage.removeItem('token');
       localStorage.removeItem('login');
       this.$store.commit('logout');
@@ -52,5 +54,11 @@ img {
   top: 50%;
   transform: translateY(-50%);
   right: 20px;
+}
+.nav-logout{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
