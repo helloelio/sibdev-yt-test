@@ -88,6 +88,14 @@ img {
   object-fit: cover;
 }
 
+a:focus {
+  outline: 1px dashed red !important;
+}
+
+button:focus {
+  outline: 1px dashed red !important;
+}
+
 .el-input__inner:focus {
   background: rgba(197, 228, 249, 0.3) !important;
 }
