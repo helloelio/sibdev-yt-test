@@ -95,6 +95,10 @@ export default {
     ...mapGetters(['videos', 'length', 'searchQuery']),
   },
 
+  created() {
+    this.searchValue = this.searchedValue;
+  },
+
   methods: {
     handlerAddFavourite() {
       this.modalView = true;
