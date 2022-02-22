@@ -88,4 +88,8 @@ img {
   object-fit: cover;
 }
 
+.el-input__inner:focus {
+  background: rgba(197, 228, 249, 0.3) !important;
+}
+
 </style>
