@@ -37,8 +37,7 @@ body {
   .nav-leftside {
     display: flex;
     align-items: center;
-
-    a {
+    & a {
       margin-left: 20px;
     }
   }
@@ -46,11 +45,6 @@ body {
   .nav-rightside {
     display: flex;
     align-items: center;
-
-    span {
-      margin-left: 20px;
-    }
-
     a.router-link-active {
       color: #1390E5;
       border: none;

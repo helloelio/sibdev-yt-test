@@ -106,6 +106,7 @@ export default {
 
 .searched {
   text-align: left;
+  min-width: 1040px;
 }
 
 .el-form {
