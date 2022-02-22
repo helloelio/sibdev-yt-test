@@ -1,6 +1,6 @@
 <template>
   <section id="search" :class="[isActiveSearched ? 'searched-block' : 'search-block']">
-    <Header />
+    <Header/>
     <div id="main" class="main-search" :class="{ 'main-searched': isActiveSearched }">
       <div class="container">
         <simple-search
@@ -101,7 +101,7 @@ export default {
 }
 
 .search {
-  min-width: 686px;
+  min-width: 1040px;
 }
 
 .searched {
