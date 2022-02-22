@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getVideos, getVideosWithStatistic, getVideosByParametres } from '../components/search/video/video.api';
+import {
+  getVideos,
+  getVideosWithStatistic,
+  getVideosByParameters,
+} from '../components/search/video/video.api';
 
 Vue.use(Vuex);
 
@@ -132,15 +136,15 @@ export default new Vuex.Store({
     },
 
     async searchFromFavourite(context, query) {
-      const { range, sort, value } = query;
-      const [error, videos] = await getVideosByParametres(range, sort, value, this.state.API_KEY);
+      const {range,sort,value} = query;
+      const [error, videos] = await getVideosByParameters(range, sort, value, this.state.API_KEY);
       if (error) {
-        console.log(error)
+        console.log(error);
       } else {
         context.commit('setItems', {
           videos,
           searchQuery: value
-        })
+        });
       }
     },
   },
