@@ -2,13 +2,22 @@
   <div class="searched">
     <h2>Поиск видео</h2>
     <el-form :inline="true" class="demo-form-inline">
-      <img @click="handlerAddFavourite" class="input-btn" src="../../assets/heart.svg"
-           alt="heart-icon">
       <el-input placeholder="Что хотите посмотреть?" v-model="searchValue">
-        <el-button type="primary" slot="append" icon="el-icon-search"
-                   @click="$emit('handleSearch', searchValue)">Найти
+        <el-button
+          type="primary"
+          slot="append"
+          icon="el-icon-search"
+          @click="$emit('handleSearch', searchValue)"
+        >Найти
         </el-button>
       </el-input>
+      <button class="input-btn">
+        <img
+          @click="handlerAddFavourite"
+          src="@/assets/heart.svg"
+          alt="heart-icon"
+        />
+      </button>
       <transition name="fade">
         <Tooltip v-if="tooltipShow"/>
       </transition>
@@ -17,18 +26,19 @@
       <article>
         <div class="search-result__header">
           <div class="search-result__description">
-            <h3>Видео по запросу «{{ searchQuery }}»
+            <h3>
+              Видео по запросу «{{ searchQuery }}»
               <span class="search-length">{{ length }}</span>
             </h3>
           </div>
           <div class="search-result__controls">
             <button @click="cardViewList = true">
-              <img v-if="cardViewList" src="@/assets/list-active.png" alt="">
-              <img v-else src="@/assets/list.png" alt="">
+              <img v-if="cardViewList" src="@/assets/list-active.png" alt=""/>
+              <img v-else src="@/assets/list.png" alt=""/>
             </button>
             <button @click="cardViewList = false">
-              <img v-if="!cardViewList" src="@/assets/grid-active.png" alt="">
-              <img v-else src="@/assets/grid.png" alt="">
+              <img v-if="!cardViewList" src="@/assets/grid-active.png" alt=""/>
+              <img v-else src="@/assets/grid.png" alt=""/>
             </button>
           </div>
         </div>
@@ -83,6 +93,10 @@ export default {
 
   computed: {
     ...mapGetters(['videos', 'length', 'searchQuery']),
+  },
+
+  created() {
+    this.searchValue = this.searchedValue;
   },
 
   methods: {
@@ -143,8 +157,9 @@ button {
   cursor: pointer;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */

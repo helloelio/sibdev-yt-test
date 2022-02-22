@@ -57,6 +57,7 @@ export default {
   },
 
   created() {
+    document.title = 'yt - избранное';
     /* eslint-disable */
     this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },

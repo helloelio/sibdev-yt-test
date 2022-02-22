@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <span class="login"><b>Вы вошли как: {{ name.login }}</b></span>
+    <span class="login"><b>{{ name.login }}</b></span>
   </header>
 </template>
 

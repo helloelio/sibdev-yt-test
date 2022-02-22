@@ -1,21 +1,25 @@
 <template>
-  <section id="search"
-           :class="[isActiveSearched ? 'searched-block' : 'search-block']">
+  <section id="search" :class="[isActiveSearched ? 'searched-block' : 'search-block']">
     <Header/>
-    <div id="main" class="main-search"
-         :class="{'main-searched': isActiveSearched}">
+    <div id="main" class="main-search" :class="{ 'main-searched': isActiveSearched }">
       <div class="container">
-        <simple-search v-if="!this.searched && this.videos.length === 0"
-                       @handleSearch="handleSearch"/>
-        <active-search v-else-if="isActiveSearched"
-                       @handleSearch="handleSearch" :searchedValue="searchedValue"/>
+        <simple-search
+          v-if="!this.searched && this.videos.length === 0"
+          @handleSearch="handleSearch"
+        />
+        <div class="loader" v-else-if="isLoaded"></div>
+        <active-search
+          v-else-if="isActiveSearched"
+          @handleSearch="handleSearch"
+          :searchedValue="searchedValue"
+        />
+
       </div>
     </div>
   </section>
 </template>
 
 <script>
-
 import { mapActions, mapGetters } from 'vuex';
 import SimpleSearch from '@/components/search/SimpleSearch.vue';
 import ActiveSearch from '@/components/search/ActiveSearch.vue';
@@ -41,10 +45,11 @@ export default {
     isActiveSearched() {
       return this.searched || this.videos.length !== 0;
     },
-    ...mapGetters(['videos']),
+    ...mapGetters(['videos', 'isLoaded']),
   },
 
   created() {
+    document.title = 'yt - поиск видео';
     /* eslint-disable */
     this.isLogin !== true ? this.$router.push({ name: 'Login' }) : ' ';
   },
@@ -96,7 +101,7 @@ export default {
 }
 
 .search {
-  min-width: 686px;
+  min-width: 1040px;
 }
 
 .searched {
@@ -116,4 +121,21 @@ export default {
   color: rgba(23, 23, 25, 0.3);
 }
 
+.loader {
+  border: 16px solid #c3c3c3;
+  border-top: 16px solid #1390E5;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

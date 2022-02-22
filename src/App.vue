@@ -7,6 +7,7 @@
 <style lang="scss">
 body {
   margin: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -86,6 +87,22 @@ body {
 
 img {
   object-fit: cover;
+}
+
+a:focus {
+  outline: 2px dashed darkblue;
+  outline-offset: 2px;
+  transition: .1s;
+}
+
+button:focus {
+  outline: 2px dashed darkblue;
+  outline-offset: 2px;
+  transition: .1s;
+}
+
+.el-input__inner:focus {
+  background: rgba(197, 228, 249, 0.3) !important;
 }
 
 </style>

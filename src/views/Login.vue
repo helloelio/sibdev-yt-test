@@ -1,7 +1,7 @@
 <template>
   <section id="login">
     <div class="container-form">
-      <img src="../assets/sibdev-logo.png" alt="sibdev-logo">
+      <img src="@/assets/sibdev-logo.png" alt="sibdev-logo">
       <h3>Вход</h3>
       <login-form/>
     </div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import LoginForm from '../components/login/LoginForm.vue';
+import LoginForm from '@/components/login/LoginForm.vue';
 
 export default {
   name: 'Login',
@@ -17,6 +17,7 @@ export default {
     LoginForm,
   },
   beforeCreate() {
+    document.title = 'yt - вход';
     if (localStorage.getItem('token') !== null) {
       this.$router.push({ name: 'Search' });
     }
