@@ -26,7 +26,7 @@ export async function getVideosWithStatistic(videoIds, apiKey) {
   }
 }
 
-export async function getVideosByParametres(max, sort, value, apiKey) {
+export async function getVideosByParameters(max, sort, value, apiKey) {
   try {
     const { data } = await axiosClient.get(
       `search?part=snippet&maxResults=${max}&order=${sort || 'relevance'}&q=${value}&key=${apiKey}`,
